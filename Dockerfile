@@ -2,8 +2,6 @@
 FROM ruby:2.1.7
 MAINTAINER Mads Hvelplund <mhv@tmnet.dk>
 
-VOLUME /var/lib/postgresql
-
 ENV MSF_DATABASE_CONFIG /etc/metasploitdb.yml
 
 # Get dependencies
@@ -22,6 +20,8 @@ WORKDIR /
 
 # Add DB configuration
 ADD db.yml /etc/metasploitdb.yml
+
+VOLUME /var/lib/postgresql
 
 # Boot-up with msfconsole
 CMD /etc/init.d/postgresql start && msfconsole
